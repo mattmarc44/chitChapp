@@ -24,9 +24,15 @@ def index():
 
     return render_template("index.html", page_title="Home")
 
-@app.route('/<username>')
+@app.route('/<username>', methods= ["GET", "POST"])
 def user(username):
     """display messages"""
+    if request.method == "POST":
+        username = session["username"]
+        message = request.form["message"]
+        add_messages(username, message)
+        return redirect(session["username"])
+        
     return render_template("chat.html", username=username, chat_messages=messages, page_title="Chat")
 
 @app.route('/<username>/<message>')

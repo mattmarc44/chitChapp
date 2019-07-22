@@ -1,15 +1,31 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h2>Welcome, {{ username }}</h2>
-    
-    {% for message in chat_messages %}
-    <p>{{ message.timestamp }} <strong>{{ message.from }}:</strong> {{ message.message }}</p>
-    {% endfor %}
+<h2>Welcome, {{ username }}</h2>
 
-    <script>
-    let timer = setTimeout(function() {
+
+<form method="post">
+    <textarea name="message" id="message" cols="50" rows="4"></textarea>
+    <br>
+    <button>Send</button>
+</form>
+
+{% for message in chat_messages %}
+<p>{{ message.timestamp }} <strong>{{ message.from }}:</strong> {{ message.message }}</p>
+{% endfor %}
+
+<script>
+    let textbox = document.getElementById("message");
+
+    let timer = setTimeout(function () {
         location.reload();
-    }, 5000)
-    </script>
+    }, 5000);
+
+    textbox.onkeydown = function (e) {
+        clearTimeout(timer);
+        timer = setTimeout(function () {
+            location.reload();
+        }, 5000);
+    }
+</script>
 
 {% endblock %}
