@@ -1,14 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Chit chApp</title>
-</head>
-<body>
-    <h1>Chit ChApp</h1>
-    <p>To send message add /username/message to the url</p>
-    <br>
-</body>
-</html>
+{% extends 'base.html' %}
+{% block content %}
+    <form method="POST">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username">
+        <button>Go Chitchat!</button>
+    </form>
+{% endblock %}
